@@ -3,263 +3,480 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ikrishna Koushik Reddy | Portfolio</title>
-    <!-- Tailwind CSS -->
+    <title>Ikoushik Reddy | Software Developer & Data Analyst</title>
+    
+    <!-- Meta tags for SEO -->
+    <meta name="description" content="Ikoushik Reddy - Computer Science & Data Science (CSDS) Student, Software Developer, and Data Analyst building clean, interactive, and data-driven digital experiences.">
+    <meta name="keywords" content="Ikoushik Reddy, Portfolio, Software Developer, Data Analyst, Web Development, Data Science, AI, React, Python, JavaScript">
+    <meta name="author" content="Ikoushik Reddy">
+
+    <!-- Tailwind CSS (via CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Configuration -->
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        brand: '#2563eb', // blue-600
-                        brandHover: '#1d4ed8', // blue-700
+                        primary: '#3b82f6',     /* blue-500 */
+                        primaryHover: '#2563eb',/* blue-600 */
+                        bgDark: '#0b1120',      /* Very dark blue, almost black */
+                        cardDark: '#1e293b',    /* slate-800 */
+                        cardDarker: '#0f172a',  /* slate-900 */
+                        accent: '#8b5cf6',      /* purple-500 */
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    animation: {
+                        'gradient-x': 'gradient-x 15s ease infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        'gradient-x': {
+                            '0%, 100%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'left center'
+                            },
+                            '50%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'right center'
+                            }
+                        },
+                        'float': {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        }
                     }
                 }
             }
         }
     </script>
+
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b1120;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+        
+        /* Glassmorphism utilities */
+        .glass {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.9));
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glass-card:hover {
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.7), 0 0 15px rgba(59, 130, 246, 0.1);
+        }
+
+        /* Gradient Text */
+        .text-gradient {
+            background: linear-gradient(to right, #3b82f6, #8b5cf6, #3b82f6);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: gradient-x 5s ease infinite;
+        }
+        
+        /* Glow Effect */
+        .glow-effect {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
     </style>
 </head>
-<body class="bg-slate-900 text-slate-300 antialiased">
+<body class="bg-bgDark text-slate-300 font-sans antialiased selection:bg-primary/30 selection:text-white relative overflow-x-hidden">
 
-    <!-- Header / Navbar -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-sm border-b border-slate-800">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
+    <!-- Background Decorators -->
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-primary/10 blur-[100px]"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-accent/10 blur-[100px]"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass border-b-0 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
                 <div class="flex-shrink-0">
-                    <a href="#" class="text-xl font-bold text-white tracking-tight">Ikrishna Koushik Reddy</a>
+                    <a href="#" class="font-display font-bold text-2xl text-white tracking-tight">I<span class="text-primary">koushik</span></a>
                 </div>
-                <!-- Desktop Navigation -->
                 <div class="hidden md:block">
-                    <div class="ml-10 flex items-center space-x-8">
-                        <a href="#about" class="text-slate-300 hover:text-white font-medium transition-colors">About</a>
-                        <a href="#projects" class="text-slate-300 hover:text-white font-medium transition-colors">Projects</a>
-                        <a href="#skills" class="text-slate-300 hover:text-white font-medium transition-colors">Skills</a>
-                        <a href="#contact" class="text-slate-300 hover:text-white font-medium transition-colors">Contact</a>
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#about" class="hover:text-primary transition-colors px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        <a href="#projects" class="hover:text-primary transition-colors px-3 py-2 rounded-md text-sm font-medium">Projects</a>
+                        <a href="#certifications" class="hover:text-primary transition-colors px-3 py-2 rounded-md text-sm font-medium">Certifications</a>
+                        <a href="#skills" class="hover:text-primary transition-colors px-3 py-2 rounded-md text-sm font-medium">Skills</a>
+                        <a href="#contact" class="bg-primary/10 text-primary border border-primary/20 hover:bg-primary hover:text-white transition-all px-4 py-2 rounded-md text-sm font-medium shadow-[0_0_15px_rgba(59,130,246,0.2)]">Get In Touch</a>
                     </div>
                 </div>
                 <!-- Mobile menu button -->
                 <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-slate-300 hover:text-white focus:outline-none">
-                        <i class="fas fa-bars text-2xl"></i>
+                    <button type="button" id="mobile-menu-btn" class="inline-flex items-center justify-center p-2 rounded-md text-slate-400 hover:text-white hover:bg-slate-800 focus:outline-none transition-colors" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fa-solid fa-bars text-xl"></i>
                     </button>
                 </div>
             </div>
         </div>
-        <!-- Mobile Navigation -->
-        <div id="mobile-menu" class="hidden md:hidden bg-slate-800 border-b border-slate-700">
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden glass absolute w-full border-t border-slate-800" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-700">About</a>
-                <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-700">Projects</a>
-                <a href="#skills" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-700">Skills</a>
-                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-700">Contact</a>
+                <a href="#about" class="hover:bg-slate-800 hover:text-primary block px-3 py-2 rounded-md text-base font-medium mobile-link">About</a>
+                <a href="#projects" class="hover:bg-slate-800 hover:text-primary block px-3 py-2 rounded-md text-base font-medium mobile-link">Projects</a>
+                <a href="#certifications" class="hover:bg-slate-800 hover:text-primary block px-3 py-2 rounded-md text-base font-medium mobile-link">Certifications</a>
+                <a href="#skills" class="hover:bg-slate-800 hover:text-primary block px-3 py-2 rounded-md text-base font-medium mobile-link">Skills</a>
+                <a href="#contact" class="hover:bg-slate-800 hover:text-primary block px-3 py-2 rounded-md text-base font-medium mobile-link">Contact</a>
             </div>
         </div>
-    </header>
+    </nav>
 
-    <main>
-        <!-- Hero Section -->
-        <section id="about" class="pt-32 pb-20 md:pt-48 md:pb-32">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="max-w-3xl">
-                    <h1 class="text-4xl md:text-6xl font-bold text-white leading-tight mb-6">
-                        Computer Science Student &<br/> Web Developer
+    <!-- Hero Section -->
+    <section id="hero" class="relative min-h-screen flex items-center pt-20 pb-12 sm:pt-24 lg:pt-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="text-center lg:text-left">
+                    <p class="text-primary font-medium tracking-wide mb-3 uppercase text-sm">Hi, my name is</p>
+                    <h1 class="text-5xl sm:text-6xl lg:text-7xl font-display font-extrabold text-white mb-4 tracking-tight leading-tight">
+                        Ikoushik Reddy
                     </h1>
-                    <p class="text-lg md:text-xl text-slate-400 mb-10 leading-relaxed">
-                        Building clean, interactive digital experiences from code to production. I specialize in crafting robust web applications with modern technologies.
+                    <h2 class="text-2xl sm:text-3xl font-display font-semibold text-slate-400 mb-6 leading-snug">
+                        <span class="text-gradient">CSDS Student</span> <br class="hidden sm:block"> 
+                        Software Developer & Data Analyst
+                    </h2>
+                    <p class="mt-4 text-lg text-slate-400 mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Building clean, interactive, and data-driven digital experiences from code to production.
                     </p>
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="#projects" class="inline-flex justify-center items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-brand hover:bg-brandHover transition-colors shadow-sm">
-                            View My Work
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="#projects" class="px-8 py-3.5 bg-primary text-white font-medium rounded-lg hover:bg-primaryHover hover:-translate-y-1 hover:shadow-[0_10px_20px_-10px_rgba(59,130,246,0.5)] transition-all duration-300 text-center flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-code"></i> View My Work
                         </a>
-                        <a href="https://github.com/Ikrishnakoushik?utm_source=gemini" target="_blank" class="inline-flex justify-center items-center px-6 py-3 border border-slate-700 text-base font-medium rounded-lg text-white bg-slate-800 hover:bg-slate-700 transition-colors shadow-sm">
-                            <i class="fab fa-github mr-2"></i> GitHub Profile
+                        <a href="mailto:Ikrishnakoushik@users.noreply.github.com" class="px-8 py-3.5 bg-transparent border border-slate-700 text-slate-300 font-medium rounded-lg hover:border-slate-500 hover:bg-slate-800 hover:-translate-y-1 transition-all duration-300 text-center flex items-center justify-center gap-2">
+                            <i class="fa-regular fa-paper-plane"></i> Contact Me
                         </a>
+                    </div>
+                </div>
+                <!-- Hero Visual (Abstract representation of code & data) -->
+                <div class="hidden lg:block relative h-[500px] w-full animate-float">
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 rounded-full border border-primary/20 flex items-center justify-center">
+                        <div class="w-56 h-56 rounded-full border border-accent/30 flex items-center justify-center rotate-45">
+                            <div class="w-40 h-40 rounded-full bg-gradient-to-tr from-primary/20 to-accent/20 blur-xl"></div>
+                        </div>
+                    </div>
+                    <!-- Floating elements -->
+                    <div class="absolute top-20 right-20 glass-card p-4 rounded-xl shadow-lg border border-slate-700/50 backdrop-blur-md">
+                        <i class="fa-solid fa-chart-line text-accent text-3xl"></i>
+                    </div>
+                    <div class="absolute bottom-32 left-10 glass-card p-4 rounded-xl shadow-lg border border-slate-700/50 backdrop-blur-md">
+                        <i class="fa-brands fa-react text-[#61DAFB] text-4xl"></i>
+                    </div>
+                    <div class="absolute top-1/2 right-10 glass-card p-4 rounded-xl shadow-lg border border-slate-700/50 backdrop-blur-md">
+                        <i class="fa-brands fa-python text-yellow-400 text-3xl"></i>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Projects Section -->
-        <section id="projects" class="py-20 bg-slate-800/50 border-y border-slate-800">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="mb-12">
-                    <h2 class="text-3xl font-bold text-white mb-4">Featured Projects</h2>
-                    <p class="text-slate-400 text-lg">Here are some of the applications I've built, complete with details and source code.</p>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    
-                    <!-- Project 1 -->
-                    <div class="bg-slate-900 border border-slate-700 rounded-xl overflow-hidden flex flex-col shadow-lg transition-transform hover:-translate-y-1">
-                        <div class="p-6 flex-grow flex flex-col">
-                            <div class="flex items-center gap-3 mb-4">
-                                <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center border border-blue-500/20 text-blue-400">
-                                    <i class="fas fa-layer-group text-lg"></i>
-                                </div>
-                                <h3 class="text-2xl font-bold text-white">Vylithra</h3>
-                            </div>
-                            <p class="text-slate-400 mb-6 flex-grow leading-relaxed">
-                                An enterprise-grade digital workspace and canvas for creators to architect, collaborate, and deliver their ideas. Features a secure authentication flow, intuitive workspace interface, and modern responsive design.
-                            </p>
-                            <div class="mb-8">
-                                <h4 class="text-xs font-semibold text-slate-500 mb-3 uppercase tracking-wider">Technologies Used</h4>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 text-sm border border-slate-700">HTML</span>
-                                    <span class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 text-sm border border-slate-700">CSS</span>
-                                    <span class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 text-sm border border-slate-700">JavaScript</span>
-                                    <span class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 text-sm border border-slate-700">UI/UX</span>
-                                </div>
-                            </div>
-                            <div class="flex flex-col gap-3 mt-auto">
-                                <a href="https://vylithra.in/?utm_source=gemini" target="_blank" class="w-full inline-flex justify-center items-center px-4 py-2.5 border border-transparent text-sm font-medium rounded-lg text-white bg-brand hover:bg-brandHover transition-colors">
-                                    <i class="fas fa-external-link-alt mr-2"></i> Live Demo
-                                </a>
-                                <a href="https://github.com/Ikrishnakoushik/Luminary-website-?utm_source=gemini" target="_blank" class="w-full inline-flex justify-center items-center px-4 py-2.5 border border-slate-600 text-sm font-medium rounded-lg text-white bg-slate-800 hover:bg-slate-700 transition-colors">
-                                    <i class="fab fa-github mr-2"></i> View on GitHub
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 2 -->
-                    <div class="bg-slate-900 border border-slate-700 rounded-xl overflow-hidden flex flex-col shadow-lg transition-transform hover:-translate-y-1">
-                        <div class="p-6 flex-grow flex flex-col">
-                            <div class="flex items-center gap-3 mb-4">
-                                <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20 text-emerald-400">
-                                    <i class="fas fa-gamepad text-lg"></i>
-                                </div>
-                                <h3 class="text-2xl font-bold text-white">Gamified Habit Tracker</h3>
-                            </div>
-                            <p class="text-slate-400 mb-6 flex-grow leading-relaxed">
-                                A social habit-tracking application that lets users bet on their daily habits with friends. Users are incentivized to maintain consistency by earning virtual coins for successful habit completion, which can be redeemed for real-world rewards.
-                            </p>
-                            <div class="mb-8">
-                                <h4 class="text-xs font-semibold text-slate-500 mb-3 uppercase tracking-wider">Technologies Used</h4>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 text-sm border border-slate-700">JavaScript</span>
-                                    <span class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 text-sm border border-slate-700">Web APIs</span>
-                                    <span class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 text-sm border border-slate-700">Logic Design</span>
-                                </div>
-                            </div>
-                            <div class="flex flex-col gap-3 mt-auto">
-                                <a href="https://github.com/Ikrishnakoushik/game?utm_source=gemini" target="_blank" class="w-full inline-flex justify-center items-center px-4 py-2.5 border border-slate-600 text-sm font-medium rounded-lg text-white bg-slate-800 hover:bg-slate-700 transition-colors">
-                                    <i class="fab fa-github mr-2"></i> View on GitHub
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 3 -->
-                    <div class="bg-slate-900 border border-slate-700 rounded-xl overflow-hidden flex flex-col shadow-lg transition-transform hover:-translate-y-1">
-                        <div class="p-6 flex-grow flex flex-col">
-                            <div class="flex items-center gap-3 mb-4">
-                                <div class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center border border-purple-500/20 text-purple-400">
-                                    <i class="fas fa-robot text-lg"></i>
-                                </div>
-                                <h3 class="text-2xl font-bold text-white">AI Chatbot Client</h3>
-                            </div>
-                            <p class="text-slate-400 mb-6 flex-grow leading-relaxed">
-                                An AI-powered conversational interface designed to integrate with external LLM API keys. Currently experimenting with local, offline inference fallbacks to support privacy-first, on-device AI processing without external dependencies.
-                            </p>
-                            <div class="mb-8">
-                                <h4 class="text-xs font-semibold text-slate-500 mb-3 uppercase tracking-wider">Technologies Used</h4>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 text-sm border border-slate-700">AI/LLMs</span>
-                                    <span class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 text-sm border border-slate-700">API Integration</span>
-                                    <span class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 text-sm border border-slate-700">Python/JS</span>
-                                </div>
-                            </div>
-                            <div class="flex flex-col gap-3 mt-auto">
-                                <a href="https://github.com/Ikrishnakoushik/ai-app-using-api-and-local-own-without-api?utm_source=gemini" target="_blank" class="w-full inline-flex justify-center items-center px-4 py-2.5 border border-slate-600 text-sm font-medium rounded-lg text-white bg-slate-800 hover:bg-slate-700 transition-colors">
-                                    <i class="fab fa-github mr-2"></i> View on GitHub
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
+    <!-- About Me Section -->
+    <section id="about" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center gap-4 mb-12">
+                <h2 class="text-3xl md:text-4xl font-display font-bold text-white whitespace-nowrap">About Me</h2>
+                <div class="h-px bg-slate-700 w-full md:w-64 mt-2"></div>
+            </div>
+            
+            <div class="glass-card rounded-2xl p-8 md:p-12 relative overflow-hidden">
+                <!-- Decorative background elements inside card -->
+                <div class="absolute -right-20 -top-20 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
+                <div class="absolute -left-20 -bottom-20 w-64 h-64 bg-accent/10 rounded-full blur-3xl"></div>
+                
+                <div class="relative z-10">
+                    <p class="text-slate-300 text-lg leading-relaxed md:leading-loose text-justify">
+                        I am a Computer Science and Data Science (<span class="text-white font-medium">CSDS</span>) student who bridges the gap between software development and data analytics. I am passionate about not just building production-ready applications, but understanding the data that drives them.
+                        <br><br>
+                        Backed by <span class="text-primary font-medium">Google Cloud certifications</span> in data analytics and visualization, I specialize in transforming raw datasets into actionable insights and integrating AI/LLMs into practical tools. 
+                        <br><br>
+                        Whether I am deploying full-scale digital workspaces like <span class="text-white font-medium italic">Vylithra</span>, visualizing complex data architectures, or engineering gamified incentive systems, I love tackling challenges that require both analytical rigor and creative problem-solving. I am currently seeking internships where I can build impactful, data-driven products.
+                    </p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Skills Section -->
-        <section id="skills" class="py-20">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold text-white mb-4">Technical Skills</h2>
-                    <p class="text-slate-400 text-lg max-w-2xl mx-auto">A summary of the languages, frameworks, and tools I use to build software.</p>
+    <!-- Featured Projects Section -->
+    <section id="projects" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center gap-4 mb-16">
+                <h2 class="text-3xl md:text-4xl font-display font-bold text-white whitespace-nowrap">Featured Projects</h2>
+                <div class="h-px bg-slate-700 w-full md:w-96 mt-2"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Project 1: Vylithra -->
+                <div class="glass-card rounded-2xl overflow-hidden group flex flex-col h-full transition-transform duration-300 hover:-translate-y-2">
+                    <div class="h-2 bg-gradient-to-r from-primary to-accent"></div>
+                    <div class="p-8 flex flex-col flex-grow">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary border border-primary/20">
+                                <i class="fa-solid fa-layer-group text-xl"></i>
+                            </div>
+                            <div class="flex gap-3">
+                                <a href="https://github.com/Ikrishnakoushik/Luminary-website-" target="_blank" class="text-slate-400 hover:text-white transition-colors" title="GitHub Repo">
+                                    <i class="fa-brands fa-github text-xl"></i>
+                                </a>
+                                <a href="https://vylithra.in/" target="_blank" class="text-slate-400 hover:text-primary transition-colors" title="Live URL">
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-xl"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-display font-bold text-white mb-3 group-hover:text-primary transition-colors">Vylithra</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
+                            An enterprise-grade digital workspace and canvas for creators to architect, collaborate, and deliver their ideas. Features a secure authentication flow, intuitive workspace interface, and modern responsive design.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mt-auto pt-4 border-t border-slate-700/50">
+                            <span class="px-3 py-1 text-xs font-medium bg-slate-800 text-slate-300 rounded-full border border-slate-700">HTML</span>
+                            <span class="px-3 py-1 text-xs font-medium bg-slate-800 text-slate-300 rounded-full border border-slate-700">CSS</span>
+                            <span class="px-3 py-1 text-xs font-medium bg-slate-800 text-slate-300 rounded-full border border-slate-700">JavaScript</span>
+                            <span class="px-3 py-1 text-xs font-medium bg-slate-800 text-slate-300 rounded-full border border-slate-700">UI/UX</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Gamified Habit Tracker -->
+                <div class="glass-card rounded-2xl overflow-hidden group flex flex-col h-full transition-transform duration-300 hover:-translate-y-2">
+                    <div class="h-2 bg-gradient-to-r from-green-400 to-emerald-600"></div>
+                    <div class="p-8 flex flex-col flex-grow">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="w-12 h-12 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-500 border border-emerald-500/20">
+                                <i class="fa-solid fa-gamepad text-xl"></i>
+                            </div>
+                            <div class="flex gap-3">
+                                <a href="https://github.com/Ikrishnakoushik/game" target="_blank" class="text-slate-400 hover:text-white transition-colors" title="GitHub Repo">
+                                    <i class="fa-brands fa-github text-xl"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-display font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">Gamified Habit Tracker</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
+                            A social habit-tracking application that lets users bet on their daily habits with friends. Users are incentivized to maintain consistency by earning virtual coins for successful habit completion, which can be redeemed for real-world gift cards.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mt-auto pt-4 border-t border-slate-700/50">
+                            <span class="px-3 py-1 text-xs font-medium bg-slate-800 text-slate-300 rounded-full border border-slate-700">JavaScript</span>
+                            <span class="px-3 py-1 text-xs font-medium bg-slate-800 text-slate-300 rounded-full border border-slate-700">Web APIs</span>
+                            <span class="px-3 py-1 text-xs font-medium bg-slate-800 text-slate-300 rounded-full border border-slate-700">Logic Design</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: AI Chatbot Client -->
+                <div class="glass-card rounded-2xl overflow-hidden group flex flex-col h-full transition-transform duration-300 hover:-translate-y-2">
+                    <div class="h-2 bg-gradient-to-r from-purple-500 to-pink-500"></div>
+                    <div class="p-8 flex flex-col flex-grow">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400 border border-purple-500/20">
+                                <i class="fa-solid fa-robot text-xl"></i>
+                            </div>
+                            <div class="flex gap-3">
+                                <a href="https://github.com/Ikrishnakoushik/ai-app-using-api-and-local-own-without-api" target="_blank" class="text-slate-400 hover:text-white transition-colors" title="GitHub Repo">
+                                    <i class="fa-brands fa-github text-xl"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-display font-bold text-white mb-3 group-hover:text-purple-400 transition-colors">AI Chatbot Client</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
+                            An AI-powered conversational interface designed to integrate with external LLM API keys. Currently experimenting with local, offline inference fallbacks to support privacy-first, on-device AI processing without external dependencies.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mt-auto pt-4 border-t border-slate-700/50">
+                            <span class="px-3 py-1 text-xs font-medium bg-slate-800 text-slate-300 rounded-full border border-slate-700">AI/LLMs</span>
+                            <span class="px-3 py-1 text-xs font-medium bg-slate-800 text-slate-300 rounded-full border border-slate-700">API Integration</span>
+                            <span class="px-3 py-1 text-xs font-medium bg-slate-800 text-slate-300 rounded-full border border-slate-700">Python/JS</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications & Badges Section -->
+    <section id="certifications" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center gap-4 mb-12">
+                <h2 class="text-3xl md:text-4xl font-display font-bold text-white whitespace-nowrap">Certifications & Badges</h2>
+                <div class="h-px bg-slate-700 w-full mt-2"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Cert 1 -->
+                <a href="https://partner.skills.google/public_profiles/ab19d36c-a141-4d3a-8383-864e52e66b57/badges/25843241" target="_blank" class="block">
+                    <div class="glass-card rounded-xl p-6 flex items-center gap-4 hover:bg-slate-800/80 transition-all duration-300 h-full border border-slate-700/50 hover:border-blue-500/50 group">
+                        <div class="w-14 h-14 rounded-full bg-blue-500/10 flex-shrink-0 flex items-center justify-center text-blue-400 border border-blue-500/20 group-hover:bg-blue-500 group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-chart-pie text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-medium leading-tight group-hover:text-blue-400 transition-colors">Introduction to Data Analytics in Google Cloud</h4>
+                            <p class="text-slate-400 text-sm mt-1">Google Cloud Credential</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Cert 2 -->
+                <a href="https://partner.skills.google/public_profiles/ab19d36c-a141-4d3a-8383-864e52e66b57/badges/25038016" target="_blank" class="block">
+                    <div class="glass-card rounded-xl p-6 flex items-center gap-4 hover:bg-slate-800/80 transition-all duration-300 h-full border border-slate-700/50 hover:border-yellow-500/50 group">
+                        <div class="w-14 h-14 rounded-full bg-yellow-500/10 flex-shrink-0 flex items-center justify-center text-yellow-400 border border-yellow-500/20 group-hover:bg-yellow-500 group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-chart-bar text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-medium leading-tight group-hover:text-yellow-400 transition-colors">The Power of Storytelling: Visualize Data</h4>
+                            <p class="text-slate-400 text-sm mt-1">Google Cloud Credential</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Cert 3 -->
+                <a href="https://partner.skills.google/public_profiles/ab19d36c-a141-4d3a-8383-864e52e66b57/badges/24716633" target="_blank" class="block">
+                    <div class="glass-card rounded-xl p-6 flex items-center gap-4 hover:bg-slate-800/80 transition-all duration-300 h-full border border-slate-700/50 hover:border-green-500/50 group">
+                        <div class="w-14 h-14 rounded-full bg-green-500/10 flex-shrink-0 flex items-center justify-center text-green-400 border border-green-500/20 group-hover:bg-green-500 group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-briefcase text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-medium leading-tight group-hover:text-green-400 transition-colors">Prepare for a Cloud Data Analyst Job</h4>
+                            <p class="text-slate-400 text-sm mt-1">Google Cloud Credential</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center gap-4 mb-12">
+                <h2 class="text-3xl md:text-4xl font-display font-bold text-white whitespace-nowrap">Technical Skills</h2>
+                <div class="h-px bg-slate-700 w-full md:w-64 mt-2"></div>
+            </div>
+
+            <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+                
+                <!-- Skill Badge -->
+                <div class="glass-card px-5 py-3 rounded-xl border border-slate-700/50 flex items-center gap-3 hover:-translate-y-1 transition-transform duration-200">
+                    <i class="fa-brands fa-python text-yellow-400 text-xl"></i>
+                    <span class="text-slate-200 font-medium">Python</span>
                 </div>
                 
-                <div class="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
-                    <div class="flex items-center gap-3 px-6 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white font-medium shadow-sm hover:bg-slate-700 transition-colors cursor-default">
-                        <i class="fab fa-python text-blue-400 text-xl"></i> Python
-                    </div>
-                    <div class="flex items-center gap-3 px-6 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white font-medium shadow-sm hover:bg-slate-700 transition-colors cursor-default">
-                        <i class="fab fa-js text-yellow-400 text-xl"></i> JavaScript
-                    </div>
-                    <div class="flex items-center gap-3 px-6 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white font-medium shadow-sm hover:bg-slate-700 transition-colors cursor-default">
-                        <i class="fab fa-react text-cyan-400 text-xl"></i> React
-                    </div>
-                    <div class="flex items-center gap-3 px-6 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white font-medium shadow-sm hover:bg-slate-700 transition-colors cursor-default">
-                        <i class="fab fa-html5 text-orange-500 text-xl"></i> HTML5
-                    </div>
-                    <div class="flex items-center gap-3 px-6 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white font-medium shadow-sm hover:bg-slate-700 transition-colors cursor-default">
-                        <i class="fab fa-css3-alt text-blue-500 text-xl"></i> CSS3
-                    </div>
-                    <div class="flex items-center gap-3 px-6 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white font-medium shadow-sm hover:bg-slate-700 transition-colors cursor-default">
-                        <i class="fab fa-git-alt text-red-500 text-xl"></i> Git
-                    </div>
-                    <div class="flex items-center gap-3 px-6 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white font-medium shadow-sm hover:bg-slate-700 transition-colors cursor-default">
-                        <i class="fab fa-github text-white text-xl"></i> GitHub
-                    </div>
+                <div class="glass-card px-5 py-3 rounded-xl border border-slate-700/50 flex items-center gap-3 hover:-translate-y-1 transition-transform duration-200">
+                    <i class="fa-brands fa-js text-yellow-300 text-xl"></i>
+                    <span class="text-slate-200 font-medium">JavaScript</span>
                 </div>
+                
+                <div class="glass-card px-5 py-3 rounded-xl border border-slate-700/50 flex items-center gap-3 hover:-translate-y-1 transition-transform duration-200">
+                    <i class="fa-brands fa-react text-blue-400 text-xl"></i>
+                    <span class="text-slate-200 font-medium">React</span>
+                </div>
+                
+                <div class="glass-card px-5 py-3 rounded-xl border border-slate-700/50 flex items-center gap-3 hover:-translate-y-1 transition-transform duration-200">
+                    <i class="fa-brands fa-html5 text-orange-500 text-xl"></i>
+                    <span class="text-slate-200 font-medium">HTML5</span>
+                </div>
+                
+                <div class="glass-card px-5 py-3 rounded-xl border border-slate-700/50 flex items-center gap-3 hover:-translate-y-1 transition-transform duration-200">
+                    <i class="fa-brands fa-css3-alt text-blue-500 text-xl"></i>
+                    <span class="text-slate-200 font-medium">CSS3</span>
+                </div>
+                
+                <div class="glass-card px-5 py-3 rounded-xl border border-slate-700/50 flex items-center gap-3 hover:-translate-y-1 transition-transform duration-200">
+                    <i class="fa-brands fa-git-alt text-orange-600 text-xl"></i>
+                    <span class="text-slate-200 font-medium">Git</span>
+                </div>
+                
+                <div class="glass-card px-5 py-3 rounded-xl border border-slate-700/50 flex items-center gap-3 hover:-translate-y-1 transition-transform duration-200">
+                    <i class="fa-brands fa-github text-white text-xl"></i>
+                    <span class="text-slate-200 font-medium">GitHub</span>
+                </div>
+                
+                <div class="glass-card px-5 py-3 rounded-xl border border-slate-700/50 flex items-center gap-3 hover:-translate-y-1 transition-transform duration-200">
+                    <i class="fa-solid fa-chart-line text-green-400 text-xl"></i>
+                    <span class="text-slate-200 font-medium">Data Analysis</span>
+                </div>
+                
+                <div class="glass-card px-5 py-3 rounded-xl border border-slate-700/50 flex items-center gap-3 hover:-translate-y-1 transition-transform duration-200">
+                    <i class="fa-solid fa-chart-area text-purple-400 text-xl"></i>
+                    <span class="text-slate-200 font-medium">Data Visualization</span>
+                </div>
+                
+                <div class="glass-card px-5 py-3 rounded-xl border border-slate-700/50 flex items-center gap-3 hover:-translate-y-1 transition-transform duration-200">
+                    <i class="fa-solid fa-database text-slate-300 text-xl"></i>
+                    <span class="text-slate-200 font-medium">Data Science Fundamentals</span>
+                </div>
+                
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="py-20 bg-slate-800/50 border-t border-slate-800">
-            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h2 class="text-3xl font-bold text-white mb-6">Get In Touch</h2>
-                <p class="text-slate-400 text-lg mb-10 leading-relaxed">
-                    I'm currently looking for new opportunities and interesting projects to collaborate on. If you have a question or just want to say hi, feel free to reach out!
+    <!-- Footer & Contact Section -->
+    <footer id="contact" class="mt-20 border-t border-slate-800 bg-slate-900/50 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="flex flex-col items-center justify-center text-center">
+                <h2 class="text-3xl font-display font-bold text-white mb-6">Get In Touch</h2>
+                <p class="text-slate-400 max-w-xl mb-8 leading-relaxed">
+                    I'm currently open to internship opportunities in software development, data analytics, and data science. Feel free to reach out if you have a question or just want to say hi!
                 </p>
+                <a href="mailto:Ikrishnakoushik@users.noreply.github.com" class="px-8 py-3.5 bg-primary/10 text-primary border border-primary/30 font-medium rounded-lg hover:bg-primary hover:text-white transition-all duration-300 mb-12 shadow-[0_0_15px_rgba(59,130,246,0.15)] hover:shadow-[0_0_25px_rgba(59,130,246,0.4)]">
+                    Say Hello
+                </a>
                 
-                <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
-                    <a href="mailto:ikowshikreddy800@gmail.com" class="inline-flex justify-center items-center px-6 py-3 border border-slate-600 text-base font-medium rounded-lg text-white bg-slate-800 hover:bg-slate-700 transition-colors shadow-sm w-full sm:w-auto">
-                        <i class="fas fa-envelope mr-2 text-slate-400"></i> ikowshikreddy800@gmail.com
+                <div class="flex gap-6 mb-8">
+                    <a href="https://github.com/Ikrishnakoushik" target="_blank" class="w-12 h-12 rounded-full glass flex items-center justify-center text-slate-300 hover:text-white hover:-translate-y-1 transition-all">
+                        <i class="fa-brands fa-github text-xl"></i>
                     </a>
-                    <a href="tel:8309662214" class="inline-flex justify-center items-center px-6 py-3 border border-slate-600 text-base font-medium rounded-lg text-white bg-slate-800 hover:bg-slate-700 transition-colors shadow-sm w-full sm:w-auto">
-                        <i class="fas fa-phone mr-2 text-slate-400"></i> +91 8309662214
+                    <!-- Replace the # with actual linkedin URL if available -->
+                    <a href="#" target="_blank" class="w-12 h-12 rounded-full glass flex items-center justify-center text-slate-300 hover:text-[#0a66c2] hover:-translate-y-1 transition-all">
+                        <i class="fa-brands fa-linkedin-in text-xl"></i>
+                    </a>
+                    <a href="mailto:Ikrishnakoushik@users.noreply.github.com" class="w-12 h-12 rounded-full glass flex items-center justify-center text-slate-300 hover:text-red-400 hover:-translate-y-1 transition-all">
+                        <i class="fa-solid fa-envelope text-xl"></i>
                     </a>
                 </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-slate-900 border-t border-slate-800 py-8">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p class="text-slate-500 text-sm">
-                &copy; 2026 Ikrishna Koushik Reddy. All rights reserved.
-            </p>
-            <div class="flex items-center space-x-6">
-                <a href="https://github.com/Ikrishnakoushik?utm_source=gemini" target="_blank" class="text-slate-500 hover:text-white transition-colors">
-                    <span class="sr-only">GitHub</span>
-                    <i class="fab fa-github text-xl"></i>
-                </a>
-                <a href="#" target="_blank" class="text-slate-500 hover:text-white transition-colors">
-                    <span class="sr-only">LinkedIn</span>
-                    <i class="fab fa-linkedin text-xl"></i>
-                </a>
+                
+                <div class="text-slate-500 text-sm">
+                    <p>&copy; 2026 Ikoushik Reddy. Designed & Built with ❤️ and Tailwind CSS.</p>
+                </div>
             </div>
         </div>
     </footer>
@@ -269,17 +486,28 @@
         // Mobile Menu Toggle
         const btn = document.getElementById('mobile-menu-btn');
         const menu = document.getElementById('mobile-menu');
+        const links = document.querySelectorAll('.mobile-link');
         
         btn.addEventListener('click', () => {
             menu.classList.toggle('hidden');
         });
 
-        // Close mobile menu when clicking a link
-        const mobileLinks = menu.querySelectorAll('a');
-        mobileLinks.forEach(link => {
+        links.forEach(link => {
             link.addEventListener('click', () => {
                 menu.classList.add('hidden');
             });
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('glass-card', 'shadow-lg');
+                navbar.classList.remove('border-transparent');
+            } else {
+                navbar.classList.remove('glass-card', 'shadow-lg');
+                navbar.classList.add('border-transparent');
+            }
         });
     </script>
 </body>
